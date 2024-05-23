@@ -1,0 +1,27 @@
+﻿@model AdminDashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1 class="text-center mb-4">Welcome to the Admin Dashboard</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Product Management</h5>
+                <p class="card-text">Add, edit, or delete products from the store.</p>
+                <a asp-controller="Admin" asp-action="ViewProducts" class="btn btn-primary">Manage Products</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Order Management</h5>
+                <p class="card-text">View and process customer orders.</p>
+                <a asp-controller="Admin" asp-action="ViewOrders" class="btn btn-primary">Manage Orders</a>
+            </div>
+        </div>
+    </div>
+</div>

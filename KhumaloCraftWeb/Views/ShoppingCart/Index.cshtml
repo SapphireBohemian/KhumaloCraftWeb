@@ -1,0 +1,43 @@
+﻿@model KhumaloCraftWeb.Models.ShoppingCart
+
+<h2>Shopping Cart</h2>
+
+@if (Model.ShoppingCartItems != null && Model.ShoppingCartItems.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ShoppingCartItems)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>R@(item.Product.Price)</td>
+                    <td>R@(item.Quantity * item.Product.Price)</td>
+                    <td>
+                        <form asp-controller="ShoppingCart" asp-action="RemoveFromCart" method="post">
+                            <input type="hidden" name="shoppingCartItemId" value="@item.ShoppingCartItemId" />
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <h4>Total Price: R@(Model.TotalPrice)</h4>
+        <a asp-controller="Order" asp-action="PlaceOrder" class="btn btn-primary">Place Order</a>
+    </div>
+}
+else
+{
+    <p>No items in the shopping cart.</p>
+}

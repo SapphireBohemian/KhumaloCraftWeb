@@ -1,0 +1,48 @@
+﻿@model KhumaloCraftWeb.Models.Order
+
+<h2>Order Details</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Order ID:</dt>
+        <dd class="col-sm-9">@Model.OrderId</dd>
+
+        <dt class="col-sm-3">Order Date:</dt>
+        <dd class="col-sm-9">@Model.OrderDate</dd>
+
+        <dt class="col-sm-3">Total Amount:</dt>
+        <dd class="col-sm-9">R@(Model.TotalAmount)</dd>
+    </dl>
+</div>
+
+@if (Model.OrderItems.Any())
+{
+    <h3>Order Items</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>R@(item.UnitPrice)</td>
+                    <td>R@(item.Quantity * item.UnitPrice)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No order items found.</p>
+}
+
+<a asp-controller="Order" asp-action="ViewOrders" class="btn btn-primary">Back to Orders</a>

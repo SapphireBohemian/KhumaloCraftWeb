@@ -1,0 +1,39 @@
+﻿@model KhumaloCraftWeb.Models.ShoppingCart
+
+<h2>Place Order</h2>
+
+@if (Model.ShoppingCartItems.Any())
+{
+    <form asp-controller="Order" asp-action="PlaceOrder" method="post">
+        <input type="hidden" name="shoppingCartId" value="@Model.ShoppingCartId" />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ShoppingCartItems)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>R@(item.Product.Price)</td>
+                        <td>R@(item.Quantity * item.Product.Price)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>
+            <h4>Total Price: R@(Model.TotalPrice)</h4>
+            <button type="submit" class="btn btn-primary">Confirm Order</button>
+        </div>
+    </form>
+}
+else
+{
+    <p>No items in the shopping cart.</p>
+}

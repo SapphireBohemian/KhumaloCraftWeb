@@ -1,0 +1,200 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f5f1; /* Light beige */
+    color: #343a40;
+    margin-bottom: 60px; /* Adjusted margin to accommodate the footer */
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header Styles */
+header {
+    background-color: #faf3e0; /* Light yellow */
+    padding: 15px 0;
+}
+
+
+/* Ensure you have Font Awesome installed and linked properly */
+
+/* Navigation Bar Styles */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+    .navbar-nav .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+    }
+
+    .navbar-nav .nav-link.active {
+        font-weight: bold;
+    }
+
+.navbar-toggler {
+    border: none;
+    color: white;
+}
+
+    .navbar-toggler:focus,
+    .navbar-toggler:active {
+        outline: none;
+    }
+
+.navbar-toggler-icon {
+    font-size: 1.5rem; /* Adjust size as needed */
+}
+
+
+
+/* Footer Styles */
+.footer {
+    background-color: #faf3e0; /* Light yellow */
+    padding: 5px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #f8f5f1; /* Light beige */
+}
+
+    .footer a {
+        color: #f8f5f1; /* Light beige */
+    }
+
+/* Page Specific Styles */
+.text-center {
+    text-align: center;
+}
+
+.display-4 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #343a40; /* Dark gray */
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: #6c757d; /* Medium gray */
+}
+
+/* Contact Form Styles */
+.contact-form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+    .contact-form h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #343a40; /* Dark gray */
+    }
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da; /* Light gray */
+    border-radius: 5px;
+}
+
+textarea.form-control {
+    resize: vertical;
+    height: 150px;
+}
+
+.btn-submit {
+    background-color: #e9ab56; /* Light brown */
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-submit:hover {
+        background-color: #cf923e; /* Darker brown */
+    }
+
+/*About Us*/
+.about-us-content {
+    padding: 30px;
+}
+
+    .about-us-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #343a40; /* Dark gray */
+    }
+
+    .about-us-content p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        line-height: 1.6;
+        color: #6c757d; /* Medium gray */
+    }
+
+    .about-us-content img {
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+
+.btn-custom {
+    background-color: #e9ab56; /* Light brown */
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-custom:hover {
+        background-color: #cf923e; /* Darker brown */
+    }
+

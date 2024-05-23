@@ -1,0 +1,37 @@
+﻿@model KhumaloCraftWeb.Models.Order
+
+@{
+    ViewData["Title"] = "Process Order";
+}
+
+<h2>Process Order</h2>
+
+<div>
+    <h4>Order Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Order ID:</dt>
+        <dd class="col-sm-10">@Model.OrderId</dd>
+        <dt class="col-sm-2">User ID:</dt>
+        <dd class="col-sm-10">@Model.UserId</dd>
+        <dt class="col-sm-2">Order Date:</dt>
+        <dd class="col-sm-10">@Model.OrderDate.ToString("yyyy-MM-dd")</dd>
+        <dt class="col-sm-2">Total Amount:</dt>
+        <dd class="col-sm-10">@Model.TotalAmount</dd>
+        <!-- Add other order details as needed -->
+    </dl>
+</div>
+
+<form asp-action="UpdateOrderStatus" method="post">
+    <div class="form-group">
+        <label for="status">Order Status:</label>
+        <select id="status" name="status" class="form-control" required>
+            <option value="">Select Status</option>
+            <option value="Pending">Pending</option>
+            <option value="Processed">Processed</option>
+            <!-- Add other status options as needed -->
+        </select>
+    </div>
+    <input type="hidden" name="id" value="@Model.OrderId" />
+    <button type="submit" class="btn btn-primary">Update Status</button>
+</form>
