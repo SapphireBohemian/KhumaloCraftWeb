@@ -1,4 +1,5 @@
 ﻿using KhumaloCraftWeb.Data;
+using KhumaloCraftWeb.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -11,6 +12,11 @@ namespace KhumaloCraftWeb.Repositories
         public ProductRepository(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public List<Products> GetAllProducts()
+        {
+            return _context.Product.ToList();
         }
 
         public void InsertProducts()

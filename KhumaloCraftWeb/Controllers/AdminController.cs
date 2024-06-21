@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KhumaloCraftWeb.Data;
 using KhumaloCraftWeb.Models;
+using KhumaloCraftWeb.Services;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KhumaloCraftWeb.Controllers
 {
@@ -11,10 +13,12 @@ namespace KhumaloCraftWeb.Controllers
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
+       // private readonly NotificationService _notificationService;
 
         public AdminController(ApplicationDbContext context)
         {
             _context = context;
+      //     _notificationService = notificationService;
         }
 
         // Admin dashboard action
@@ -49,6 +53,7 @@ namespace KhumaloCraftWeb.Controllers
             }
             return View(product); // Return to the view with validation errors
         }
+
 
         // Action to edit a product
         [HttpGet]
@@ -98,7 +103,7 @@ namespace KhumaloCraftWeb.Controllers
         }
 
         // Action to process an order
-        public IActionResult ProcessOrder(int id)
+        public async Task<IActionResult> ProcessOrder(int id)
         {
             var order = _context.Order.Find(id);
             if (order == null)
@@ -108,14 +113,14 @@ namespace KhumaloCraftWeb.Controllers
 
             // Process the order (e.g., update status)
             order.Status = OrderStatus.Processed; // Assuming OrderStatus is an enum
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(ViewOrders));
         }
 
         // Action to update order status
         [HttpPost]
-        public IActionResult UpdateOrderStatus(int id, OrderStatus status)
+        public async Task<IActionResult> UpdateOrderStatus(int id, OrderStatus status)
         {
             var order = _context.Order.Find(id);
             if (order == null)
@@ -125,7 +130,7 @@ namespace KhumaloCraftWeb.Controllers
 
             // Update the order status
             order.Status = status;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(ViewOrders));
         }

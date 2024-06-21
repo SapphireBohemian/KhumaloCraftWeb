@@ -1,0 +1,17 @@
+﻿@model KhumaloCraftLibrary.ToDoItem
+
+<h2>Delete To-Do Item</h2>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <div class="form-group">
+        <label>Title</label>
+        <p>@Model.Title</p>
+    </div>
+    <div class="form-group">
+        <label>Is Completed</label>
+        <p>@Model.IsCompleted</p>
+    </div>
+    <input type="hidden" asp-for="Id" /> <!-- Ensure Id is included -->
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a> <!-- Optional: Add a link to go back -->
+</form>

@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "compute1": {
+      "group": "connections",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/OrderProcessingFunction",
+      "type": "compute.function"
+    }
+  }
+}

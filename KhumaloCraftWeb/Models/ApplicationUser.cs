@@ -6,5 +6,6 @@ namespace KhumaloCraftWeb.Models
     {
         // Navigation property for shopping cart
         public ShoppingCart ShoppingCart { get; set; }
+        public string? FcmToken { get; set; }
     }
 }

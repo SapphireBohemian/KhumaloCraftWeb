@@ -1,4 +1,7 @@
-﻿using KhumaloCraftWeb.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using KhumaloCraftWeb.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +21,7 @@ namespace KhumaloCraftWeb.Data
         public DbSet<OrderItem> OrderItem { get; set; }
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItem { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

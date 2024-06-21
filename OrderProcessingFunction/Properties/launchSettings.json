@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "OrderProcessingFunction": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7134"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 34546,
+      "useSSL": false
+    }
+  }
+}

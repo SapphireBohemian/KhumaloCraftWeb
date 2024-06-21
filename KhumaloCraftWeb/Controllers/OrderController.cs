@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace KhumaloCraftWeb.Controllers
@@ -14,11 +15,13 @@ namespace KhumaloCraftWeb.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IHttpClientFactory _httpClientFactory; // Inject HttpClientFactory
 
-        public OrderController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public OrderController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IHttpClientFactory httpClientFactory)
         {
             _context = context;
             _userManager = userManager;
+            _httpClientFactory = httpClientFactory;
         }
 
         // Action to display order form
@@ -104,9 +107,39 @@ namespace KhumaloCraftWeb.Controllers
             // Save changes to the database
             await _context.SaveChangesAsync();
 
+            // Trigger Durable Function upon successful order placement
+            await TriggerDurableFunction(order.OrderId);
+
             return RedirectToAction("ViewOrders");
         }
 
+        // Method to trigger Durable Function
+        private async Task TriggerDurableFunction(int orderId)
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post, "https://orderprocessingfunction.azurewebsites.net")
+                {
+                    Content = new StringContent($"{{ 'orderId': {orderId} }}")
+                };
+
+                var client = _httpClientFactory.CreateClient();
+                var response = await client.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    // Handle failure scenario
+                    // Log or throw an exception
+                    throw new Exception($"Failed to trigger Durable Function. Status code: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error triggering Durable Function: {ex.Message}");
+                throw;
+            }
+        }
 
         // Action to view details of a specific order
         [Authorize]

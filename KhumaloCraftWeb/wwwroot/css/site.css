@@ -1,3 +1,4 @@
+/*site.css*/
 html {
   font-size: 14px;
 }
@@ -37,19 +38,19 @@ header {
     padding: 15px 0;
 }
 
-
 /* Ensure you have Font Awesome installed and linked properly */
 
-/* Navigation Bar Styles */
+/* Navbar Brand */
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
+/* Navbar Links */
 .navbar-nav .nav-link {
     font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease-in-out;
+    padding: 0.6rem 1rem;
+    transition: background-color 0.3s ease-in-out;
 }
 
     .navbar-nav .nav-link:hover {
@@ -61,6 +62,7 @@ header {
         font-weight: bold;
     }
 
+/* Navbar Toggler */
 .navbar-toggler {
     border: none;
     color: white;
@@ -72,7 +74,38 @@ header {
     }
 
 .navbar-toggler-icon {
-    font-size: 1.5rem; /* Adjust size as needed */
+    font-size: 1.5rem;
+}
+
+/* Search Form */
+.navbar-nav .form-inline .input-group {
+    width: 300px; /* Adjust width as needed */
+}
+
+.navbar-nav .form-inline .form-control {
+    border-radius: 0.25rem 0 0 0.25rem;
+    border: 1px solid #ced4da;
+    margin-right: -1px; /* Adjust margin to avoid border overlap */
+}
+
+.navbar-nav .form-inline .input-group-append .btn {
+    border-radius: 0 0.25rem 0.25rem 0;
+    border: 1px solid #ced4da;
+    border-left: 0; /* Remove border between input and button */
+    padding-left: 10px; /* Add padding for better appearance */
+    padding-right: 10px; /* Add padding for better appearance */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .navbar-nav .form-inline {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+        .navbar-nav .form-inline .input-group {
+            width: 100%;
+        }
 }
 
 
@@ -180,6 +213,22 @@ textarea.form-control {
         border-radius: 5px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
+    }
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-card .card-body {
+        padding: 15px;
     }
 
 

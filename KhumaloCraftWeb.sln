@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhumaloCraftWeb", "KhumaloCraftWeb\KhumaloCraftWeb.csproj", "{2FF48C2C-9476-4AF0-B8B4-81CC95C29EA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KhumaloCraftWeb", "KhumaloCraftWeb\KhumaloCraftWeb.csproj", "{2FF48C2C-9476-4AF0-B8B4-81CC95C29EA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessingFunction", "OrderProcessingFunction\OrderProcessingFunction.csproj", "{D0B360FB-9A5C-4625-A5F6-B11421E70FF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KhumaloCraftLibrary", "KhumaloCraftLibrary\KhumaloCraftLibrary.csproj", "{6094E38C-98C5-4B5A-B941-F1AFDC6DC015}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2FF48C2C-9476-4AF0-B8B4-81CC95C29EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF48C2C-9476-4AF0-B8B4-81CC95C29EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF48C2C-9476-4AF0-B8B4-81CC95C29EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B360FB-9A5C-4625-A5F6-B11421E70FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B360FB-9A5C-4625-A5F6-B11421E70FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B360FB-9A5C-4625-A5F6-B11421E70FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B360FB-9A5C-4625-A5F6-B11421E70FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6094E38C-98C5-4B5A-B941-F1AFDC6DC015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6094E38C-98C5-4B5A-B941-F1AFDC6DC015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6094E38C-98C5-4B5A-B941-F1AFDC6DC015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6094E38C-98C5-4B5A-B941-F1AFDC6DC015}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,143 @@
+﻿@model List<KhumaloCraftWeb.Models.Products>
+
+<h2 class="text-center mb-4">Search Results</h2>
+
+<form asp-action="Search" method="get" class="mb-4">
+    <div class="input-group">
+        <input type="text" class="form-control" name="query" placeholder="Search for products..." />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 product-card">
+                    <img src="@Url.Content(product.ImageUrl)" alt="@product.Name" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text">R@(product.Price)</p>
+                        @if (product.Availability)
+                        {
+                            <p class="card-text text-success">Available</p>
+                        }
+                        else
+                        {
+                            <p class="card-text text-danger">Unavailable</p>
+                        }
+                        <!-- Add to Cart button -->
+                        <button class="btn btn-custom add-to-cart-btn" data-product-id="@product.ProductId">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <p>No products found.</p>
+    </div>
+}
+
+
+
+<!-- Add jQuery for filtering products by category -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Add to Cart button click event
+        $('.add-to-cart-btn').click(function () {
+            var productId = $(this).data('product-id');
+
+            // Send AJAX request to add product to cart
+            $.ajax({
+                url: '@Url.Action("AddToCart", "ShoppingCart")',
+                type: 'POST',
+                data: { productId: productId, quantity: 1 },
+                success: function (response) {
+                    // Redirect to shopping cart page
+                    window.location.href = '@Url.Action("Index", "ShoppingCart")';
+                },
+                error: function (xhr, status, error) {
+                    // Display error message if request fails
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        // Function to calculate and display the total price
+        function updateTotalPrice() {
+            var totalPrice = 0;
+            $('.product-item').each(function () {
+                var quantity = parseInt($(this).find('.quantity-input').val()); // Parse quantity as integer
+                var priceText = $(this).find('.card-text').text().trim(); // Get the text containing the price
+                console.log('Quantity:', quantity);
+                console.log('Price Text:', priceText);
+                // Use regular expression to extract the price
+                var priceMatches = priceText.match(/[\d,.]+/);
+                if (priceMatches && priceMatches.length > 0) {
+                    var price = parseFloat(priceMatches[0].replace(',', '.')); // Parse the extracted price as float
+                    console.log('Parsed Price:', price);
+                    totalPrice += quantity * price;
+                }
+            });
+            console.log('Total Price:', totalPrice);
+            $('#total-price').text('R' + totalPrice.toFixed(2)); // Display total price
+        }
+
+        // Event listener for quantity change
+        $('.quantity-input').change(function () {
+            updateTotalPrice();
+        });
+
+        // Initial update of total price
+        updateTotalPrice();
+    });
+
+    // Filter products by category
+    $(document).ready(function () {
+        $('#categoryButtons button').click(function () {
+            var category = $(this).data('category');
+            $('.product-item').hide();
+            $('.featured-product-item').hide(); // Hide all featured products
+            if (category === 'all') {
+                $('.product-item').show();
+                $('.featured-product-item').show(); // Show all featured products
+            } else {
+                $('.product-item[data-category="' + category + '"]').show();
+                $('.featured-product-item[data-category="' + category + '"]').show(); // Show featured products matching the selected category
+            }
+        });
+
+        // Filter products by price range
+        $('.price-filter').click(function () {
+            var minPrice = parseFloat($(this).data('min-price'));
+            var maxPrice = parseFloat($(this).data('max-price'));
+            $('.product-item').hide();
+            $('.featured-product-item').hide(); // Hide all products
+            $('.product-item').each(function () {
+                var priceText = $(this).find('.card-text').text().trim(); // Get the text containing the price
+                var price = parseFloat(priceText.substring(priceText.indexOf('R') + 1)); // Extract the price value
+                if (!isNaN(price) && price >= minPrice && price <= maxPrice) {
+                    $(this).show();
+                }
+            });
+            $('.featured-product-item').each(function () {
+                var priceText = $(this).find('.card-text').text().trim(); // Get the text containing the price
+                var price = parseFloat(priceText.substring(priceText.indexOf('R') + 1)); // Extract the price value
+                if (!isNaN(price) && price >= minPrice && price <= maxPrice) {
+                    $(this).show();
+                }
+            }); // Show products within the selected price range
+        });
+
+    });
+</script>

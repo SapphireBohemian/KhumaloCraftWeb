@@ -1,3 +1,4 @@
+using KhumaloCraftLibrary;
 using KhumaloCraftWeb.Data;
 using KhumaloCraftWeb.Models;
 using KhumaloCraftWeb.Repositories;
@@ -19,6 +20,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 
 builder.Services.AddTransient<IRoleInitializer, RoleInitializer>();
+
+builder.Services.AddTransient<NotificationService>();
+
+builder.Services.AddSingleton<ToDoService>();
+
+builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<ProductRepository>();
 

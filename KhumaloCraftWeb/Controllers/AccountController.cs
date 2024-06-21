@@ -1,4 +1,5 @@
 ﻿using KhumaloCraftWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Policy;
@@ -31,7 +32,7 @@ namespace KhumaloCraftWeb.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
-
+                         
                 if (result.Succeeded)
                 {
                     // Assign admin role if specified during registration
@@ -51,6 +52,34 @@ namespace KhumaloCraftWeb.Controllers
             // If we got this far, something failed, redisplay the form with validation errors
             return View(model);
         }
+
+       /* [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveFcmToken([FromBody] FcmTokenModel model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            user.FcmToken = model.Token;
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return Ok();
+        }
+
+        public class FcmTokenModel
+        {
+            public string Token { get; set; }
+        }*/
+
+
 
         [HttpGet]
         public IActionResult Login()

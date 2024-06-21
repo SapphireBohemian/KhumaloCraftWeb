@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "compute1": {
+      "group": "connections",
+      "type": "compute"
+    }
+  }
+}
